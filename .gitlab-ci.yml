@@ -1,12 +1,11 @@
-language: python
-python :
-  -"3.8"
+imgae: "python"
 
 #services:
  # - docker
 
 #before_script:
   #- pip install docker-compose
+
 
 script:
   - python manage.py test
