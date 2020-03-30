@@ -7,11 +7,22 @@ class UserManager(BaseUserManager):
      
      def create_user(self, email, password = None, **exrta_fields):
      	"""Creates and saves a new user"""
+     	if not email:
+     		raise ValueError('user must have an email address')
      	user = self.model(email=self.normalize_email(email), **exrta_fields)
      	user.set_password(password)
      	user.save(using = self._db)
 
      	return user
+
+     def create_superuser(self, email, password):
+    	 """creates and saves a new super user"""
+    	 user = self.create_user(email, password)
+    	 user.is_staff = True
+    	 user.is_superuser = True
+    	 user.save(using = self._db)
+
+    	 return user
 
 class User(AbstractBaseUser, PermissionsMixin):
 	"""Custtom user model that supports using email instead of username"""
