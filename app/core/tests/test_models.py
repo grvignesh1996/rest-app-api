@@ -16,6 +16,7 @@ class ModelTests(TestCase):
     	self.assertTrue(user.check_password(password))
 
 
+
     def test_new_user_email_normaliaed(self):
 
     	"""test the email for  normialise"""
